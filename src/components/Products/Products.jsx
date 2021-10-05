@@ -1,9 +1,41 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import ProductCard from './ProductCard';
 
-function Products(props) {
+function Products() {
+
+    const history = useHistory();
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        async function getProducts() {
+            const result = await axios('http://localhost:5000/api/products');
+            setProducts(result.data);
+            console.log(result);
+        }
+        getProducts();
+    }, []);
+
+    const viewProduct = (productId) => {
+        // console.log('Product details', productId);
+        history.push(`/products/${productId}`);
+
+    }
+
     return (
         <div>
-            <h2>This is product</h2>
+            <hr />
+            <div className="row container-fluid">
+                {
+                    products.map(product => <ProductCard viewProduct={viewProduct} product={product} key={product._id}></ProductCard>)
+                }
+
+            </div>
+
+            {/* <ul>
+                {products.map(product => <li key={product._id}>{product.name}</li>)}
+            </ul> */}
         </div>
     );
 }

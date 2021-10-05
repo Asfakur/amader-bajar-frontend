@@ -10,6 +10,17 @@ In the project directory, you can run:
 
 ### `npm install react-router-dom` [React-Router-Dom](https://reactrouter.com/web/guides/quick-start)
 
+
+### axios is used to call backend
+$ npm i axios
+
+### ----- lodash
+
+$ npm i lodash
+
+### --prop-types 
+npm i prop-types
+
 ### `here you write code` 
 
 
