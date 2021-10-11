@@ -1,24 +1,35 @@
 import React, { useEffect, useState } from "react";
+import _ from "lodash";
 import { getProducts, deleteProduct } from "../../services/productService";
 import { getCategories } from "../../services/categoryService";
 import { paginate } from "../../utils/paginate";
 import ListGroup from "../common/listGroup";
 import Pagination from "../common/Pagination";
+import ProductsTable from "./ProductsTable";
 
 function ManageProducts() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, selectCategory] = useState();
-  const pageCapacity = 2;
+  const [sortColumn, setSortColumn] = useState({ path: "name", order: "asc" });
+  const pageCapacity = 3;
 
   const filteredProducts =
     selectedCategory && selectedCategory._id
       ? products.filter((p) => p.category._id === selectedCategory._id)
       : products;
 
+  //before pagination we have to sort the products using lodash
+
+  const sortedProducts = _.orderBy(
+    filteredProducts,
+    [sortColumn.path],
+    [sortColumn.order]
+  );
+
   // const paginatedProducts = paginate(products, currentPage, pageCapacity);
-  const paginatedProducts = paginate(filteredProducts, currentPage, pageCapacity);
+  const paginatedProducts = paginate(sortedProducts, currentPage, pageCapacity);
 
   useEffect(() => {
     async function getData() {
@@ -26,7 +37,10 @@ function ManageProducts() {
       setProducts(loadedProducts);
 
       const { data: loadedCategories } = await getCategories();
-      const newCategories = [{ name: "All Categories" }, ...loadedCategories];
+      const newCategories = [
+        { _id: "", name: "All Categories" },
+        ...loadedCategories,
+      ];
       setCategories(newCategories);
     }
     getData();
@@ -54,6 +68,18 @@ function ManageProducts() {
     setCurrentPage(1);
   };
 
+  const handleSort = (path) => {
+    const newSortColumn = { ...sortColumn }; //cloning
+
+    if (newSortColumn.path === path) {
+      newSortColumn.order = newSortColumn.order === "asc" ? "desc" : "asc";
+    } else {
+      newSortColumn.path = path;
+      newSortColumn.order = "asc";
+    }
+    setSortColumn(newSortColumn);
+  };
+
   if (products.length === 0) return <p>There is no product in database</p>;
 
   return (
@@ -68,35 +94,12 @@ function ManageProducts() {
       <div className="col">
         <div className="col-md-8">
           <p>Total products in database {products.length}</p>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Categories</th>
-                <th>Stock</th>
-                <th>Price</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {paginatedProducts.map((product) => (
-                <tr key={product._id}>
-                  <td>{product.name}</td>
-                  <td>{product.category.name}</td>
-                  <td>{product.numberInStock}</td>
-                  <td>{product.price}</td>
-                  <td>
-                    <button
-                      onClick={() => handleDelete(product)}
-                      className="btn btn-danger btn-sm"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+
+          <ProductsTable
+            products={paginatedProducts}
+            onDelete={handleDelete}
+            onSort={handleSort}
+          />
 
           <Pagination
             itemsCount={filteredProducts.length}
