@@ -3,8 +3,7 @@ import _ from "lodash";
 import PropTypes from "prop-types";
 
 function Pagination({ itemsCount, pageCapacity, currentPage, onPageChange }) {
-  
-    const pagesCount = Math.ceil(itemsCount / pageCapacity);
+  const pagesCount = Math.ceil(itemsCount / pageCapacity);
   if (pagesCount === 1) return null;
 
   //creating arrays with lodash

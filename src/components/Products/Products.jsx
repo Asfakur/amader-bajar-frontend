@@ -12,7 +12,7 @@ function Products() {
         async function getProducts() {
             const result = await axios('http://localhost:5000/api/products');
             setProducts(result.data);
-            console.log(result);
+            // console.log(result);
         }
         getProducts();
     }, []);
