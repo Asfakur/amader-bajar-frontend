@@ -1,17 +1,18 @@
 import React from "react";
+import TableHeader from "../common/tableHeader";
 
-const ProductsTable = ({ products, onDelete, onSort }) => {
+const ProductsTable = ({ products, onDelete, onSort, sortColumn }) => {
+  const columns = [
+    { path: "name", label: "Name" },
+    { path: "category.name", label: "Category" },
+    { path: "numberInStock", label: "Stock" },
+    { path: "price", label: "Price" },
+    { key: "action", label: "Action" },
+  ];
   return (
     <table className="table">
-      <thead>
-        <tr>
-          <th onClick={() => onSort("name")}>Name</th>
-          <th onClick={() => onSort("category.name")}>Categories</th>
-          <th onClick={() => onSort("numberInStock")}>Stock</th>
-          <th onClick={() => onSort("price")}>Price</th>
-          <th>Action</th>
-        </tr>
-      </thead>
+      <TableHeader columns={columns} onSort={onSort} sortColumn={sortColumn} />
+
       <tbody>
         {products.map((product) => (
           <tr key={product._id}>

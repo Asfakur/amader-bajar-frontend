@@ -68,16 +68,8 @@ function ManageProducts() {
     setCurrentPage(1);
   };
 
-  const handleSort = (path) => {
-    const newSortColumn = { ...sortColumn }; //cloning
-
-    if (newSortColumn.path === path) {
-      newSortColumn.order = newSortColumn.order === "asc" ? "desc" : "asc";
-    } else {
-      newSortColumn.path = path;
-      newSortColumn.order = "asc";
-    }
-    setSortColumn(newSortColumn);
+  const handleSort = (sortColumn) => {
+    setSortColumn(sortColumn);
   };
 
   if (products.length === 0) return <p>There is no product in database</p>;
@@ -99,6 +91,7 @@ function ManageProducts() {
             products={paginatedProducts}
             onDelete={handleDelete}
             onSort={handleSort}
+            sortColumn={sortColumn}
           />
 
           <Pagination
