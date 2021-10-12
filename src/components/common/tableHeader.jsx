@@ -19,6 +19,7 @@ const TableHeader = ({ columns, sortColumn, onSort }) => {
           <th
             key={column.path || column.key}
             onClick={() => raiseSort(column.path)}
+            className="crp"
           >
             {column.label}
           </th>

@@ -1,8 +1,7 @@
 import React from "react";
-import TableBody from "../common/tableBody";
-import TableHeader from "../common/tableHeader";
+import Table from "../common/table";
 
-const ProductsTable = ({ products, onDelete, onSort, sortColumn }) => {
+const ProductsTable = ({ products, onDelete, sortColumn, onSort }) => {
   const columns = [
     { path: "name", label: "Name" },
     { path: "category.name", label: "Category" },
@@ -22,10 +21,12 @@ const ProductsTable = ({ products, onDelete, onSort, sortColumn }) => {
     },
   ];
   return (
-    <table className="table">
-      <TableHeader columns={columns} onSort={onSort} sortColumn={sortColumn} />
-      <TableBody columns={columns} data={products} />
-    </table>
+    <Table
+      columns={columns}
+      data={products}
+      sortColumn={sortColumn}
+      onSort={onSort}
+    />
   );
 };
 
