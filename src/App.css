@@ -2,7 +2,6 @@
   text-align: center;
 }
 
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -22,11 +21,10 @@
 
   --pink-button: #db4a87;
   --pink-button-hover: #2c0f1b;
-  
-  --green-button: #3EBA70;
+
+  --green-button: #3eba70;
   --green-hover: #176536;
 }
-
 
 /* buttons cb => custom-button*/
 .cb {
@@ -59,8 +57,6 @@
   color: var(--color-white);
 }
 
-
-
 .cb-pink {
   background-color: var(--pink-button);
   color: var(--color-white);
@@ -81,6 +77,11 @@
   color: var(--color-white);
 }
 
-.crp{
+.crp {
   cursor: pointer;
+}
+
+.left-nav {
+  /* height: 100vh; */
+  height: 100%;
 }

@@ -34,7 +34,7 @@ function App() {
 
           
 
-          <Route path="/dashboard">
+          <Route path="/admin">
             <Dashboard></Dashboard>
           </Route>
 
