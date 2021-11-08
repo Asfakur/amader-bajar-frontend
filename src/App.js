@@ -10,10 +10,12 @@ import Home from './components/Home/Home';
 import ProductDetails from "./components/Products/ProductDetails";
 import Products from './components/Products/Products';
 import NavBar from './components/shared/NavBar/NavBar';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
     <div className="App">
+      {/* <ToastContainer /> */}
       {/* <h1>Again React js</h1> */}
 
 

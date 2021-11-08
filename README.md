@@ -26,4 +26,5 @@ npm i prop-types
 
 **Note: You write note here `eject`, !**
 
+npm i react-toastify
 

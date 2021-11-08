@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router";
-import AddProduct from "./addProduct";
+import ProductForm from "./productForm";
 import LeftNav from "./leftNav";
 import ManageProducts from "./ManageProducts";
 
@@ -16,7 +16,7 @@ function Dashboard(props) {
             <ManageProducts />
           </Route>
           <Route path="/admin/new">
-            <AddProduct />
+            <ProductForm />
           </Route>
         </Switch>
       </div>
