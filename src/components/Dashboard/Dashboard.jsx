@@ -3,6 +3,8 @@ import { Route, Switch } from "react-router";
 import ProductForm from "./productForm";
 import LeftNav from "./leftNav";
 import ManageProducts from "./ManageProducts";
+import ManageCategory from "./manageCategory";
+import CategoryForm from "./categoryForm";
 
 function Dashboard(props) {
   return (
@@ -12,12 +14,14 @@ function Dashboard(props) {
       </div>
       <div className="col-10">
         <Switch>
-          <Route path="/admin/manage">
+          <Route path="/dashboard/product/manage">
             <ManageProducts />
           </Route>
-          <Route path="/admin/new">
-            <ProductForm />
+          <Route path="/dashboard/product/:id" component={ProductForm} />
+          <Route path="/dashboard/category/manage">
+            <ManageCategory />
           </Route>
+          <Route path="/dashboard/category/:id" component={CategoryForm} />
         </Switch>
       </div>
     </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import Joi from 'joi';
 import Form from '../common/form'
 import { getCategories } from '../../services/categoryService';
+import { getProduct, saveProduct } from '../../services/productService';
 
 
 class ProductForm extends Form {
@@ -44,11 +45,55 @@ class ProductForm extends Form {
         const { data: loadedCategories } = await getCategories();
         this.setState({ categories: loadedCategories });
         // console.log(loadedCategories);
+        this.populateProduct();
+    }
+
+    async populateProduct() {
+        try {
+            const productId = this.props.match.params.id;
+            if (productId === "new") return; //it is ready to take new input
+
+            const { data: product } = await getProduct(productId);
+            // console.log(product);
+
+            this.setState({ data: this.mapToViewModel(product) });
+        }
+        catch (ex) {
+            if (ex.response || ex.response.status === 404)
+                this.props.history.replace("/not-found");
+            console.log(ex);
+        }
 
     }
 
-    doSubmit = () => {
+    //this method extract the minimum need data from backend for the product form in frontend
+    //we need this method coz we need not the 50 properties of product from the database
+    mapToViewModel(product) {
+        return {
+            _id: product._id,
+            name: product.name,
+            categoryId: product.category._id,
+            details: product.details,
+            price: product.price,
+            numberInStock: product.numberInStock,
+            image: product.image,
+            deleteImage: product.deleteImage
+        }
+
+    }
+
+    doSubmit = async () => {
         console.log(this.state.data);
+        //save to db
+        const res = await saveProduct(this.state.data);
+        if (res.status === 200) {
+            alert('Product Successfully added');
+            this.props.history.push("/products");
+        } else {
+            alert('Problem in to save data in backend');
+        }
+        // console.log(res);
+
     }
 
 

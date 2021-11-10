@@ -59,6 +59,8 @@ function ManageProducts() {
     }
   };
 
+
+
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };

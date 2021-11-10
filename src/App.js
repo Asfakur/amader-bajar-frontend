@@ -11,6 +11,8 @@ import ProductDetails from "./components/Products/ProductDetails";
 import Products from './components/Products/Products';
 import NavBar from './components/shared/NavBar/NavBar';
 import { ToastContainer } from 'react-toastify';
+import ProductForm from "./components/Dashboard/productForm";
+import NotFound from "./components/shared/notFound";
 
 function App() {
   return (
@@ -25,7 +27,10 @@ function App() {
           <Route exact path="/home">
             <Home></Home>
           </Route>
-          
+          {/* <Route path="/products/edit/:id">
+            <ProductForm />
+          </Route> */}
+
           <Route path="/products/:id">
             <ProductDetails></ProductDetails>
           </Route>
@@ -34,14 +39,18 @@ function App() {
             <Products></Products>
           </Route>
 
-          
 
-          <Route path="/admin">
+
+          <Route path="/dashboard">
             <Dashboard></Dashboard>
           </Route>
 
           <Route exact path="/">
             <Home></Home>
+          </Route>
+
+          <Route path="/">
+            <NotFound />
           </Route>
 
         </Switch>

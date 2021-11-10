@@ -2,19 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Table from "../common/table";
 
-const ProductsTable = ({ products, onDelete, sortColumn, onSort }) => {
+const CategoryTable = ({ categories, onDelete, sortColumn, onSort }) => {
   const columns = [
-    { path: "name", label: "Name" },
-    { path: "category.name", label: "Category" },
-    { path: "numberInStock", label: "Stock" },
-    { path: "price", label: "Price" },
+    { path: "name", label: "Category Name" },
     {
       key: "edit",
       label: "Edit",
-      content: (product) => (
+      content: (category) => (
         <Link
           className="btn btn-success btn-sm"
-          to={`/dashboard/product/${product._id}`}
+          to={`/dashboard/category/${category._id}`}
         >
           Edit
         </Link>
@@ -23,9 +20,9 @@ const ProductsTable = ({ products, onDelete, sortColumn, onSort }) => {
     {
       key: "action",
       label: "Action",
-      content: (product) => (
+      content: (category) => (
         <button
-          onClick={() => onDelete(product)}
+          onClick={() => onDelete(category)}
           className="btn btn-danger btn-sm"
         >
           Delete
@@ -36,11 +33,11 @@ const ProductsTable = ({ products, onDelete, sortColumn, onSort }) => {
   return (
     <Table
       columns={columns}
-      data={products}
+      data={categories}
       sortColumn={sortColumn}
       onSort={onSort}
     />
   );
 };
 
-export default ProductsTable;
+export default CategoryTable;

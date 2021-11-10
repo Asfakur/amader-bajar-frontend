@@ -8,9 +8,8 @@ const TableBody = ({ data, columns }) => {
   };
 
   const createKey = (item, column) => {
-    return item._id + (column.path || column.path);
+    return item._id + (column.path || column.key);
   };
-
   return (
     <tbody>
       {data.map((item) => (
