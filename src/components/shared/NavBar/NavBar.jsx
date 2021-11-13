@@ -1,39 +1,53 @@
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import React from 'react';
+import React from "react";
 
 const NavBar = () => {
-    return (
+  return (
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Container>
+        <Link className="navbar-brand" to="/">
+          AmaderBajar
+        </Link>
 
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Container>
-                <Link className="navbar-brand" to="/">AmaderBajar</Link>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Link className="nav-link" to="/products">
+              Products
+            </Link>
+            <Link className="nav-link" to="/dashboard/product/manage">
+              Dashboard
+            </Link>
+            <NavDropdown title="Categories" id="collasible-nav-dropdown">
+              <Link className="dropdown-item" to="/products/fruits">
+                Fruits
+              </Link>
+              <Link className="dropdown-item" to="/products/vegetable">
+                Vegetable
+              </Link>
 
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto">
-                        <Link className="nav-link" to="/products">Products</Link>
-                        <Link className="nav-link" to="/dashboard/product/manage">Dashboard</Link>
-                        <NavDropdown title="Categories" id="collasible-nav-dropdown">
-                            <Link className="dropdown-item" to="/products/fruits">Fruits</Link>
-                            <Link className="dropdown-item" to="/products/vegetable">Vegetable</Link>
-
-                            <NavDropdown.Divider />
-                            <Link className="dropdown-item" to="/products">All Products</Link>
-                        </NavDropdown>
-                    </Nav>
-                    <Nav>
-                        <Link className="nav-link" to="/user">User</Link>
-                        <Link className="nav-link" to="/logout">Logout</Link>
-                        {/* <Nav.Link eventKey={2} href="#memes">
+              <NavDropdown.Divider />
+              <Link className="dropdown-item" to="/products">
+                All Products
+              </Link>
+            </NavDropdown>
+          </Nav>
+          <Nav>
+            <Link className="nav-link" to="/login">
+              Login
+            </Link>
+            <Link className="nav-link" to="/register">
+              Register
+            </Link>
+            {/* <Nav.Link eventKey={2} href="#memes">
                             Logout
                         </Nav.Link> */}
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-
-    );
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 };
 
 export default NavBar;

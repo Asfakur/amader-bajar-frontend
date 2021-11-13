@@ -1,5 +1,7 @@
 {
-    "apiUrl": "http://localhost:5000",
+    "apiUrl2": "https://pacific-savannah-53531.herokuapp.com",
     "imageApi": "https://api.imgbb.com/1/upload",
-    "imageApiKey" : "a0df80bb39236cc860e662c5acb1ab7c"
+    "imageApiKey" : "a0df80bb39236cc860e662c5acb1ab7c",
+    "apiUrl": "http://localhost:5000"
 }
+

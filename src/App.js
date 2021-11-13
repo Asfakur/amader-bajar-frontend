@@ -13,6 +13,8 @@ import NavBar from './components/shared/NavBar/NavBar';
 import { ToastContainer } from 'react-toastify';
 import ProductForm from "./components/Dashboard/productForm";
 import NotFound from "./components/shared/notFound";
+import RegisterForm from "./components/Auth/registerForm";
+import LoginForm from "./components/Auth/loginForm";
 
 function App() {
   return (
@@ -30,6 +32,9 @@ function App() {
           {/* <Route path="/products/edit/:id">
             <ProductForm />
           </Route> */}
+
+          <Route path="/register" component={RegisterForm} />
+          <Route path="/login" component={LoginForm} />
 
           <Route path="/products/:id">
             <ProductDetails></ProductDetails>

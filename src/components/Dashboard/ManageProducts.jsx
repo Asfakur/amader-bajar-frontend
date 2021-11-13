@@ -13,7 +13,7 @@ function ManageProducts() {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, selectCategory] = useState();
   const [sortColumn, setSortColumn] = useState({ path: "name", order: "asc" });
-  const pageCapacity = 3;
+  const pageCapacity = 8;
 
   const filteredProducts =
     selectedCategory && selectedCategory._id
