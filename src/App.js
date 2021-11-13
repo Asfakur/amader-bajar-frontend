@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,8 +15,25 @@ import ProductForm from "./components/Dashboard/productForm";
 import NotFound from "./components/shared/notFound";
 import RegisterForm from "./components/Auth/registerForm";
 import LoginForm from "./components/Auth/loginForm";
+import jwtDecode from "jwt-decode";
+import Logout from "./components/Auth/logout";
 
 function App() {
+
+  const [user, setUser] = useState({});
+  console.log(user);
+
+  useEffect(() => {
+    try {
+      const jwt = localStorage.getItem("token");
+      const newUser = jwtDecode(jwt);
+      setUser(newUser);
+    }
+    catch (ex) {
+
+    }
+  }, [])
+
   return (
     <div className="App">
       {/* <ToastContainer /> */}
@@ -24,7 +41,7 @@ function App() {
 
 
       <Router>
-        <NavBar></NavBar>
+        <NavBar user={user}></NavBar>
         <Switch>
           <Route exact path="/home">
             <Home></Home>
@@ -35,6 +52,9 @@ function App() {
 
           <Route path="/register" component={RegisterForm} />
           <Route path="/login" component={LoginForm} />
+          <Route path="/logout" >
+            <Logout />
+          </Route>
 
           <Route path="/products/:id">
             <ProductDetails></ProductDetails>

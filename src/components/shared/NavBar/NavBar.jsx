@@ -2,7 +2,7 @@ import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import React from "react";
 
-const NavBar = () => {
+const NavBar = ({ user }) => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -34,15 +34,26 @@ const NavBar = () => {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Link className="nav-link" to="/login">
-              Login
-            </Link>
-            <Link className="nav-link" to="/register">
-              Register
-            </Link>
-            {/* <Nav.Link eventKey={2} href="#memes">
-                            Logout
-                        </Nav.Link> */}
+            {!user.email && (
+              <React.Fragment>
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
+                <Link className="nav-link" to="/register">
+                  Register
+                </Link>
+              </React.Fragment>
+            )}
+            {user.email && (
+              <React.Fragment>
+                <Link className="nav-link" to="/userProfile">
+                  {user.name}
+                </Link>
+                <Link className="nav-link" to="/logout">
+                  Logout
+                </Link>
+              </React.Fragment>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
