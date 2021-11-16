@@ -15,23 +15,17 @@ import ProductForm from "./components/Dashboard/productForm";
 import NotFound from "./components/shared/notFound";
 import RegisterForm from "./components/Auth/registerForm";
 import LoginForm from "./components/Auth/loginForm";
-import jwtDecode from "jwt-decode";
+
 import Logout from "./components/Auth/logout";
+import auth from "./services/authService";
 
 function App() {
 
   const [user, setUser] = useState({});
-  console.log(user);
 
   useEffect(() => {
-    try {
-      const jwt = localStorage.getItem("token");
-      const newUser = jwtDecode(jwt);
-      setUser(newUser);
-    }
-    catch (ex) {
-
-    }
+    const newUser = auth.getCurrentUser()
+    setUser(newUser);
   }, [])
 
   return (

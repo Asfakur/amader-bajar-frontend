@@ -34,7 +34,7 @@ const NavBar = ({ user }) => {
             </NavDropdown>
           </Nav>
           <Nav>
-            {!user.email && (
+            {!user && (
               <React.Fragment>
                 <Link className="nav-link" to="/login">
                   Login
@@ -44,7 +44,7 @@ const NavBar = ({ user }) => {
                 </Link>
               </React.Fragment>
             )}
-            {user.email && (
+            {user && (
               <React.Fragment>
                 <Link className="nav-link" to="/userProfile">
                   {user.name}

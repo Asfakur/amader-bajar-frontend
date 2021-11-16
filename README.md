@@ -28,3 +28,4 @@ npm i prop-types
 
 npm i react-toastify
 
+$ npm install react-stripe-checkout
