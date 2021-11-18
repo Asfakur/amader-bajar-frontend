@@ -18,6 +18,7 @@ import LoginForm from "./components/Auth/loginForm";
 
 import Logout from "./components/Auth/logout";
 import auth from "./services/authService";
+import PrivateRoute from "./components/Auth/privateRoute";
 
 function App() {
 
@@ -60,9 +61,9 @@ function App() {
 
 
 
-          <Route path="/dashboard">
+          <PrivateRoute path="/dashboard">
             <Dashboard></Dashboard>
-          </Route>
+          </PrivateRoute>
 
           <Route exact path="/">
             <Home></Home>

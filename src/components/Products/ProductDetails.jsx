@@ -10,11 +10,16 @@ function ProductDetails() {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [productDetails, setProductDetails] = useState({});
+  const [customerDetails, setCustomerDetails] = useState({
+    _id: "614618740d94b1b9e6edafda",
+    name: "Kuddus",
+    phone: "+8801214541221",
+  });
 
   let productQuantity = Number(quantity) < 1 ? 1 : Number(quantity);
   // console.log(productQuantity);
 
-  console.log(productDetails);
+  // console.log(productDetails);
 
   useEffect(() => {
     async function getData() {
@@ -26,13 +31,13 @@ function ProductDetails() {
 
   useEffect(() => {
     setProductDetails({
+      _id: product._id,
       name: product.name,
       price: product.price,
       quantity: productQuantity,
     });
   }, [product, productQuantity]);
 
-  
   const handleQuantity = (isIncrease) => {
     if (isIncrease) {
       if (Number(quantity) > 24) return;
@@ -63,8 +68,8 @@ function ProductDetails() {
     console.log("product details in frontend", productDetails);
 
     try {
-      const response = await payBill({ token, productDetails });
-      console.log(response);
+      const response = await payBill({ token, productDetails, customerDetails });
+      console.log("Payment Response ", response);
       console.log("payment done");
     } catch (ex) {
       console.log(ex);

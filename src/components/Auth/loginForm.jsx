@@ -2,6 +2,8 @@ import React from "react";
 import Joi from "joi";
 import Form from "../common/form";
 import auth from "../../services/authService";
+import { useHistory } from "react-router";
+
 
 class LoginForm extends Form {
   state = {
@@ -16,13 +18,17 @@ class LoginForm extends Form {
     email: Joi.string().min(3).max(255).required().label("Email"),
     password: Joi.string().min(5).max(255).required().label("Password"),
   });
+  
 
   doSubmit = async () => {
     try {
+
+      const path = this.props.location.state.from.pathname;
+      console.log(path);
       const { data } = this.state;
       await auth.login(data.email, data.password);
       // this.props.history.push('/');
-      window.location = "/";
+      window.location = path || "/";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
