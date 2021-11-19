@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import StripeCheckout from "react-stripe-checkout";
 import { payBill } from "../../services/paymentService";
 import { getProduct } from "../../services/productService";
 import { stripeKey } from "../../config.json";
+import { getCurrentUser } from "../../services/authService";
+import { Link } from "react-router-dom";
 
 function ProductDetails() {
   const [product, setProduct] = useState({});
@@ -16,6 +18,10 @@ function ProductDetails() {
     phone: "+8801214541221",
   });
 
+  let location = useLocation();
+
+  const user = getCurrentUser();
+  console.log(user);
   let productQuantity = Number(quantity) < 1 ? 1 : Number(quantity);
   // console.log(productQuantity);
 
@@ -68,7 +74,11 @@ function ProductDetails() {
     console.log("product details in frontend", productDetails);
 
     try {
-      const response = await payBill({ token, productDetails, customerDetails });
+      const response = await payBill({
+        token,
+        productDetails,
+        customerDetails,
+      });
       console.log("Payment Response ", response);
       console.log("payment done");
     } catch (ex) {
@@ -119,17 +129,32 @@ function ProductDetails() {
             >
               +
             </span>
-            <StripeCheckout
-              stripeKey={stripeKey}
-              token={handlePay}
-              amount={Math.round(
-                (productDetails.price * productDetails.quantity * 100) / 85.79
-              )}
-              name={productDetails.name}
-              image="https://i.ibb.co/8ztWc1p/logo-amader-bajar.png"
-              billingAddress
-              // shippingAddress
-            ></StripeCheckout>
+
+            {user ? (
+              <StripeCheckout
+                // disabled={user ? "disabled" : null}
+                disabled={user && user.userType === "admin" ? true : false}
+                stripeKey={stripeKey}
+                token={handlePay}
+                amount={Math.round(
+                  (productDetails.price * productDetails.quantity * 100) / 85.79
+                )}
+                name={productDetails.name}
+                image="https://i.ibb.co/8ztWc1p/logo-amader-bajar.png"
+                billingAddress
+                // shippingAddress
+              ></StripeCheckout>
+            ) : (
+              <Link
+                className="btn btn-success"
+                to={{
+                  pathname: "/login",
+                  state: { from: location },
+                }}
+              >
+                Buy Now
+              </Link>
+            )}
           </div>
         </div>
       )}

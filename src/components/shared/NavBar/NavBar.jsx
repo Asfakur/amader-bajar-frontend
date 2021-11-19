@@ -16,15 +16,12 @@ const NavBar = ({ user }) => {
             <Link className="nav-link" to="/products">
               Products
             </Link>
-            <Link className="nav-link" to="/dashboard/product/manage">
-              Dashboard
-            </Link>
+            {user && <Link className="nav-link" to={user && `/${user.userType}`}>
+              {user && "Dashboard"}
+            </Link>}
             <NavDropdown title="Categories" id="collasible-nav-dropdown">
-              <Link className="dropdown-item" to="/products/fruits">
-                Fruits
-              </Link>
-              <Link className="dropdown-item" to="/products/vegetable">
-                Vegetable
+              <Link className="dropdown-item" to="/products">
+                Products
               </Link>
 
               <NavDropdown.Divider />

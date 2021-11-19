@@ -19,6 +19,8 @@ import LoginForm from "./components/Auth/loginForm";
 import Logout from "./components/Auth/logout";
 import auth from "./services/authService";
 import PrivateRoute from "./components/Auth/privateRoute";
+import AdminDashboard from "./components/Dashboard/adminDashboard/AdminDashboard";
+import CustomerDashboard from "./components/Dashboard/customerDashboard/CustomerDashboard";
 
 function App() {
 
@@ -47,22 +49,27 @@ function App() {
 
           <Route path="/register" component={RegisterForm} />
           <Route path="/login" component={LoginForm} />
+          {/* <Route path="/login">
+            <LoginForm />
+          </Route> */}
           <Route path="/logout" >
             <Logout />
           </Route>
 
-          <Route path="/products/:id">
-            <ProductDetails></ProductDetails>
-          </Route>
+          <Route path="/products/:id" component={ProductDetails} />
+          {/* <ProductDetails></ProductDetails> */}
+
 
           <Route path="/products">
             <Products></Products>
           </Route>
 
+          <PrivateRoute path="/admin">
+            <AdminDashboard />
+          </PrivateRoute>
 
-
-          <PrivateRoute path="/dashboard">
-            <Dashboard></Dashboard>
+          <PrivateRoute path="/customer">
+            <CustomerDashboard />
           </PrivateRoute>
 
           <Route exact path="/">
