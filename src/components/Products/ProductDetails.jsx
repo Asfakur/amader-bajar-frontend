@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router";
+import { useHistory, useLocation, useParams } from "react-router";
 import StripeCheckout from "react-stripe-checkout";
 import { payBill } from "../../services/paymentService";
 import { getProduct } from "../../services/productService";
@@ -12,20 +12,22 @@ function ProductDetails() {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [productDetails, setProductDetails] = useState({});
-  const [customerDetails, setCustomerDetails] = useState({
-    _id: "614618740d94b1b9e6edafda",
-    name: "Kuddus",
-    phone: "+8801214541221",
-  });
+  const [customerDetails, setCustomerDetails] = useState({});
 
+  let productQuantity = Number(quantity) < 1 ? 1 : Number(quantity);
   let location = useLocation();
+  let history = useHistory();
 
   const user = getCurrentUser();
-  console.log(user);
-  let productQuantity = Number(quantity) < 1 ? 1 : Number(quantity);
-  // console.log(productQuantity);
 
-  // console.log(productDetails);
+  // if (user && user.userType === "customer") {
+  //   setCustomerDetails({
+  //     _id: user._id,
+  //     name: user.name,
+  //     phone: user.phone,
+  //     email: user.email,
+  //   });
+  // }
 
   useEffect(() => {
     async function getData() {
@@ -33,7 +35,7 @@ function ProductDetails() {
       setProduct(result.data);
     }
     getData();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     setProductDetails({
@@ -43,6 +45,7 @@ function ProductDetails() {
       quantity: productQuantity,
     });
   }, [product, productQuantity]);
+  // console.log(user);
 
   const handleQuantity = (isIncrease) => {
     if (isIncrease) {
@@ -74,15 +77,25 @@ function ProductDetails() {
     console.log("product details in frontend", productDetails);
 
     try {
-      const response = await payBill({
-        token,
-        productDetails,
-        customerDetails,
-      });
-      console.log("Payment Response ", response);
-      console.log("payment done");
+      if (user && user.userType === "customer") {
+        const response = await payBill({
+          token,
+          productDetails,
+          customerDetails: user,
+          // customerDetails,
+        });
+
+        const { orderSavedToDb, paymentDone } = response.data;
+        if (orderSavedToDb && paymentDone) {
+          alert("Ordered Placed");
+          history.replace('/customer');
+          console.log("payment done");
+          console.log("Payment Response ", response);
+        }
+      }
     } catch (ex) {
       console.log(ex);
+      alert("something is wrong");
     }
   };
   // console.log(product);

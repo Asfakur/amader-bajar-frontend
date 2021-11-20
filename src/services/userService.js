@@ -7,6 +7,11 @@ export function register(user) {
     return http.post(apiEndpoint, {
         name: user.name,
         email: user.email,
-        password: user.password
+        password: user.password,
+        phone: user.phone
     })
+}
+
+export function getCustomer(id) {
+    return http.get(apiEndpoint + '/' + id);
 }

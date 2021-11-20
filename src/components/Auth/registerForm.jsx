@@ -10,6 +10,7 @@ class RegisterForm extends Form {
       name: "",
       email: "",
       password: "",
+      phone: "",
     },
     errors: {},
   };
@@ -17,10 +18,12 @@ class RegisterForm extends Form {
   schema = Joi.object({
     name: Joi.string().min(3).max(255).required().label("Name"),
     email: Joi.string().min(3).max(255).required().label("Email"),
+    phone: Joi.string().min(6).max(20).required().label("Phone"),
     password: Joi.string().min(5).max(255).required().label("Password"),
   });
 
   doSubmit = async () => {
+    console.log(this.state.data);
     try {
       const response = await register(this.state.data);
       auth.loginWithJwt(response.headers["x-auth-token"]);
@@ -40,6 +43,7 @@ class RegisterForm extends Form {
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("name", "Name")}
           {this.renderInput("email", "Email Address", "email")}
+          {this.renderInput("phone", "Phone", "number")}
           {this.renderInput("password", "Password", "password")}
           {this.renderButton("Save")}
         </form>

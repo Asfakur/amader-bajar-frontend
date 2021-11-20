@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from "react-router";
 import { getCurrentUser } from "../../../services/authService";
 import CategoryForm from "../categoryForm";
 import ManageCategory from "../manageCategory";
+import ManageOrders from "../manageOrders";
 import ManageProducts from "../ManageProducts";
 import ProductForm from "../productForm";
 import AdminLeftNav from "./adminLeftNav";
@@ -21,6 +22,9 @@ const AdminDashboard = () => {
         <Switch>
           <Route path="/admin/product/manage">
             <ManageProducts />
+          </Route>
+          <Route path="/admin/orders/manage">
+            <ManageOrders />
           </Route>
           <Route path="/admin/product/:id" component={ProductForm} />
           <Route path="/admin/category/manage">

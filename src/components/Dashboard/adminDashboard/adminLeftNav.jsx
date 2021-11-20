@@ -13,6 +13,9 @@ const AdminLeftNav = () => {
       <Link to="/admin/category/manage" className="btn btn-secondary  m-1">
         Manage Categories
       </Link>
+      <Link to="/admin/orders/manage" className="btn btn-secondary  m-1">
+        Manage Orders
+      </Link>
     </div>
   );
 };

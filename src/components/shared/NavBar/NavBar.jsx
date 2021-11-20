@@ -7,7 +7,7 @@ const NavBar = ({ user }) => {
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <Link className="navbar-brand" to="/">
-          AmaderBajar
+          AmaderBazar
         </Link>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
