@@ -88,7 +88,7 @@ function ProductDetails() {
         const { orderSavedToDb, paymentDone } = response.data;
         if (orderSavedToDb && paymentDone) {
           alert("Ordered Placed");
-          history.replace('/customer');
+          history.replace("/customer");
           console.log("payment done");
           console.log("Payment Response ", response);
         }
@@ -101,11 +101,12 @@ function ProductDetails() {
   // console.log(product);
 
   return (
-    <div>
-      <h1>This is product details</h1>
+    <div className="container-fluid">
+      <h1 className="d-flex justify-content-center my-4">Checkout Page</h1>
+      <hr />
       {product.name && (
-        <div className="row container-fluid">
-          <div className="col-md-6">
+        <div className="row">
+          <div className="d-flex h-100 justify-content-center align-items-center col-md-6">
             <img src={product.image} alt="" />
           </div>
           <div className="col-md-6">
@@ -115,59 +116,66 @@ function ProductDetails() {
               Price {product.price} <span className="taka">&#2547;</span>
             </h4>
             <p>Details : {product.details}</p>
-          </div>
-          <div className="flex col-md-4 d-flex">
-            <span
-              className="btn btn-success fs-5 mx-1"
-              onClick={() => handleQuantity(false)}
-            >
-              -
-            </span>
-            <span>
-              <input
-                type="number"
-                size="2"
-                min="1"
-                max="20"
-                name="quantity"
-                // defaultValue={orderDetails.quantity}
-                value={quantity}
-                onChange={handleGetQuantity}
-                className="form-control mt-1"
-              />
-            </span>
-            <span
-              className="btn btn-success fs-5 mx-1"
-              onClick={() => handleQuantity(true)}
-            >
-              +
-            </span>
 
-            {user ? (
-              <StripeCheckout
-                // disabled={user ? "disabled" : null}
-                disabled={user && user.userType === "admin" ? true : false}
-                stripeKey={stripeKey}
-                token={handlePay}
-                amount={Math.round(
-                  (productDetails.price * productDetails.quantity * 100) / 85.79
-                )}
-                name={productDetails.name}
-                image="https://i.ibb.co/8ztWc1p/logo-amader-bajar.png"
-                billingAddress
-                // shippingAddress
-              ></StripeCheckout>
-            ) : (
-              <Link
-                className="btn btn-success"
-                to={{
-                  pathname: "/login",
-                  state: { from: location },
-                }}
+            <div className="flex col-md-5 d-flex">
+              <span
+                className="btn btn-success fs-5 mx-1"
+                onClick={() => handleQuantity(false)}
               >
-                Buy Now
-              </Link>
-            )}
+                -
+              </span>
+              <span>
+                <input
+                  type="number"
+                  size="2"
+                  min="1"
+                  max="20"
+                  name="quantity"
+                  // defaultValue={orderDetails.quantity}
+                  value={quantity}
+                  onChange={handleGetQuantity}
+                  className="form-control mt-1"
+                />
+              </span>
+              <span
+                className="btn btn-success fs-5 mx-1"
+                onClick={() => handleQuantity(true)}
+              >
+                +
+              </span>
+
+              {user ? (
+                <StripeCheckout
+                  // disabled={user ? "disabled" : null}
+                  disabled={user && user.userType === "admin" ? true : false}
+                  stripeKey={stripeKey}
+                  token={handlePay}
+                  amount={Math.round(
+                    (productDetails.price * productDetails.quantity * 100) /
+                      85.79
+                  )}
+                  name={productDetails.name}
+                  image="https://i.ibb.co/8ztWc1p/logo-amader-bajar.png"
+                  billingAddress
+                  // shippingAddress
+                ></StripeCheckout>
+              ) : (
+                <Link
+                  className="btn btn-success"
+                  to={{
+                    pathname: "/login",
+                    state: { from: location },
+                  }}
+                >
+                  Buy Now
+                </Link>
+              )}
+            </div>
+            <h2>
+              <span className="badge bg-secondary my-2 taka">
+                Total price: {productDetails.price * productDetails.quantity} &#2547;
+              </span>
+            </h2>
           </div>
         </div>
       )}
