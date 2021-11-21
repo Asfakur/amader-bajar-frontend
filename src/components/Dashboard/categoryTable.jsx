@@ -11,7 +11,7 @@ const CategoryTable = ({ categories, onDelete, sortColumn, onSort }) => {
       content: (category) => (
         <Link
           className="btn btn-success btn-sm"
-          to={`/dashboard/category/${category._id}`}
+          to={`/admin/category/${category._id}`}
         >
           Edit
         </Link>

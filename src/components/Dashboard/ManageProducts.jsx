@@ -13,7 +13,7 @@ function ManageProducts() {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, selectCategory] = useState();
   const [sortColumn, setSortColumn] = useState({ path: "name", order: "asc" });
-  const pageCapacity = 8;
+  const pageCapacity = 6;
 
   const filteredProducts =
     selectedCategory && selectedCategory._id
@@ -59,8 +59,6 @@ function ManageProducts() {
     }
   };
 
-
-
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -77,32 +75,31 @@ function ManageProducts() {
   if (products.length === 0) return <p>There is no product in database</p>;
 
   return (
-    <div className="row">
-      <div className="col-3">
+    <div className="row container-fluid">
+      <div className="col-sm-3 mt-2">
         <ListGroup
           items={categories}
           selectedItem={selectedCategory}
           onItemSelect={handleSelectCategory}
         />
       </div>
-      <div className="col">
-        <div className="col-md-8">
-          <p>Total products in database {products.length}</p>
 
-          <ProductsTable
-            products={paginatedProducts}
-            onDelete={handleDelete}
-            onSort={handleSort}
-            sortColumn={sortColumn}
-          />
+      <div className="col-md-8">
+        <p>Total products in database {products.length}</p>
 
-          <Pagination
-            itemsCount={filteredProducts.length}
-            pageCapacity={pageCapacity}
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
-          />
-        </div>
+        <ProductsTable
+          products={paginatedProducts}
+          onDelete={handleDelete}
+          onSort={handleSort}
+          sortColumn={sortColumn}
+        />
+
+        <Pagination
+          itemsCount={filteredProducts.length}
+          pageCapacity={pageCapacity}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </div>
     </div>
   );

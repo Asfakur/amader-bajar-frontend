@@ -24,10 +24,10 @@ const ManageOrders = () => {
     const currentStatus = e.target.value;
     const orderId = order._id;
     const result = await changeOrderStatus(orderId, currentStatus);
-    console.log(result.data);
+    // console.log(result.data);
 
-    console.log("status current ", currentStatus, "orderID ", orderId);
-    console.log("Option Selected", order);
+    // console.log("status current ", currentStatus, "orderID ", orderId);
+    // console.log("Option Selected", order);
   };
 
   const handleSort = (sortColumn) => {

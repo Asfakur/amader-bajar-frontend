@@ -9,7 +9,7 @@ import Home from './components/Home/Home';
 import ProductDetails from "./components/Products/ProductDetails";
 import Products from './components/Products/Products';
 import NavBar from './components/shared/NavBar/NavBar';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import ProductForm from "./components/Dashboard/productForm";
 import NotFound from "./components/shared/notFound";
 import RegisterForm from "./components/Auth/registerForm";
@@ -25,6 +25,8 @@ function App() {
 
   const [user, setUser] = useState({});
 
+
+
   useEffect(() => {
     const newUser = auth.getCurrentUser()
     setUser(newUser);
@@ -32,9 +34,9 @@ function App() {
 
   return (
     <div className="App">
-      {/* <ToastContainer /> */}
       {/* <h1>Again React js</h1> */}
 
+      {/* <ToastContainer /> */}
 
       <Router>
         <NavBar user={user}></NavBar>
@@ -60,7 +62,7 @@ function App() {
 
 
           <Route path="/products">
-            <Products></Products>
+            <Home></Home>
           </Route>
 
           <PrivateRoute path="/admin">

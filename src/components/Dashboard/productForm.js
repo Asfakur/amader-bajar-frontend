@@ -88,7 +88,7 @@ class ProductForm extends Form {
         const res = await saveProduct(this.state.data);
         if (res.status === 200) {
             alert('Product Successfully added');
-            this.props.history.push("/dashboard/product/manage");
+            this.props.history.push("/admin/product/manage");
         } else {
             alert('Problem in to save data in backend');
         }

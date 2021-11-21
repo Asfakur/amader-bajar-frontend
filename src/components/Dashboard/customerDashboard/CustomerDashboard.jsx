@@ -11,7 +11,7 @@ const CustomerDashboard = () => {
   const isCustomer = user && user.userType === "customer";
   if (!isCustomer) return <Redirect to="/not-found" />;
   return (
-    <div className="row">
+    <div className="row container-fluid">
       <div className="col-md-2">
         <CustomerLeftNav></CustomerLeftNav>
       </div>

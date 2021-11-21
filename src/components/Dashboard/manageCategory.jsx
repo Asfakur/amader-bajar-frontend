@@ -26,6 +26,7 @@ const ManageCategory = () => {
   const handleDelete = async (category) => {
     // console.log("This category will be deleted" + category._id);
     // console.log(category);
+    alert("Deleting category will create problem for managing Products")
   };
 
   const handleSort = (sortColumn) => {
@@ -38,7 +39,7 @@ const ManageCategory = () => {
   return (
     <div>
       <h1>This is categories manage Table</h1>
-      <Link to="/dashboard/category/new" className="btn btn-primary">Add New Category</Link>
+      <Link to="/admin/category/new" className="btn btn-primary">Add New Category</Link>
 
       <CategoryTable
         categories={sortedCategories}

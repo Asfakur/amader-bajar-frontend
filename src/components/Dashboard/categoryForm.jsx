@@ -44,7 +44,7 @@ class CategoryForm extends Form {
     const res = await saveCategory(this.state.data);
     if (res.status === 200) {
       alert("Category Successfully Managed");
-      this.props.history.push("/dashboard/category/manage");
+      this.props.history.push("/admin/category/manage");
     } else {
       alert("Problem in to save data in backend");
     }

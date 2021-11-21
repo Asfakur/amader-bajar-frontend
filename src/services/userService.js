@@ -12,6 +12,14 @@ export function register(user) {
     })
 }
 
+export function getUsers() {
+    return http.get(apiEndpoint);
+}
+
 export function getCustomer(id) {
     return http.get(apiEndpoint + '/' + id);
+}
+
+export function changeUserType(userId, newType) {
+    return http.put(apiEndpoint + '/' + userId, { userType: newType });
 }

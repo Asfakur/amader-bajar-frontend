@@ -11,7 +11,7 @@ function Pagination({ itemsCount, pageCapacity, currentPage, onPageChange }) {
   const pages = _.range(1, pagesCount + 1); //here 1 is for(0+1)
 
   return (
-    <nav>
+    <nav className="d-flex justify-content-center">
       <ul className="pagination">
         {pages.map((page) => (
           <li

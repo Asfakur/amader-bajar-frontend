@@ -14,7 +14,7 @@ const ProductsTable = ({ products, onDelete, sortColumn, onSort }) => {
       content: (product) => (
         <Link
           className="btn btn-success btn-sm"
-          to={`/dashboard/product/${product._id}`}
+          to={`/admin/product/${product._id}`}
         >
           Edit
         </Link>
