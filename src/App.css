@@ -11,6 +11,8 @@
 
   --green-button: #3eba70;
   --green-hover: #176536;
+  /* --cool-background: rgba(160, 211, 185, 0.801); */
+  --cool-background: #c2c2c2b4;
 }
 
 /* buttons cb => custom-button*/
@@ -27,6 +29,9 @@
   margin: 1rem 0;
   border: 0;
   /* border: 1px solid transparent; */
+}
+.cb-cool{
+  background-color: var(--cool-background);
 }
 
 .cb-block {
@@ -77,4 +82,7 @@
   font-size: 25px;
   font-weight: 900;
   font-stretch: expanded;
+}
+.log{
+  height: 400px;
 }
