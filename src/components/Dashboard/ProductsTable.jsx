@@ -7,7 +7,7 @@ const ProductsTable = ({ products, onDelete, sortColumn, onSort }) => {
     { path: "name", label: "Name" },
     { path: "category.name", label: "Category" },
     { path: "numberInStock", label: "Stock" },
-    { path: "price", label: "Price" },
+    { path: "price", label: "Price (Tk)" },
     {
       key: "edit",
       label: "Edit",

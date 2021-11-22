@@ -6,7 +6,7 @@ function ProductCard({ product, viewProduct }) {
     <div className="col-md-4 d-flex justify-content-around">
       <div
         onClick={() => viewProduct(product._id)}
-        className="m-3 p-3 rounded crp cc hc"
+        className="m-3 p-3 rounded crp bg-secondary hc"
       >
         <img
           className="rounded"

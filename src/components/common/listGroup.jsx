@@ -2,7 +2,7 @@ import React from "react";
 
 const ListGroup = ({ items, textProperty, valueProperty, selectedItem, onItemSelect }) => {
   return (
-    <ul className="list-group">
+    <ul className="list-group crp">
       {items.map((item) => (
         <li
           onClick={() => onItemSelect(item)}
