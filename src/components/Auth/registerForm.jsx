@@ -20,6 +20,7 @@ class RegisterForm extends Form {
     email: Joi.string().min(3).max(255).required().label("Email"),
     phone: Joi.string().min(6).max(20).required().label("Phone"),
     password: Joi.string().min(5).max(255).required().label("Password"),
+    
   });
 
   doSubmit = async () => {

@@ -172,7 +172,7 @@ function ProductDetails() {
               )}
             </div>
             <h2>
-              <span className="badge bg-secondary my-2 taka">
+              <span className="badge bg-info my-2 taka">
                 Total price: {productDetails.price * productDetails.quantity} &#2547;
               </span>
             </h2>
