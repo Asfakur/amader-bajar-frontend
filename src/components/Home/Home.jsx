@@ -8,6 +8,7 @@ import Pagination from "../common/Pagination";
 
 import ProductCard from "../Products/ProductCard";
 import { useHistory } from "react-router";
+import Reload from "../shared/Reload";
 
 function Home() {
   const history = useHistory();
@@ -66,7 +67,11 @@ function Home() {
     history.push(`/products/${productId}`);
   };
 
-  if (products.length === 0) return <p>There is no product in database</p>;
+  if (products.length === 0)
+    return (
+      <Reload/>
+    );
+  // <p>There is no product in database</p>;
 
   return (
     <div className="row container-fluid">
