@@ -24,8 +24,6 @@ const ManageCategory = () => {
   );
 
   const handleDelete = async (category) => {
-    // console.log("This category will be deleted" + category._id);
-    // console.log(category);
     alert("Deleting category will create problem for managing Products")
   };
 

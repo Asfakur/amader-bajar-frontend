@@ -17,7 +17,6 @@ function Products() {
   }, []);
 
   const viewProduct = (productId) => {
-    // console.log('Product details', productId);
     history.push(`/products/${productId}`);
   };
 
@@ -33,10 +32,6 @@ function Products() {
           ></ProductCard>
         ))}
       </div>
-
-      {/* <ul>
-                {products.map(product => <li key={product._id}>{product.name}</li>)}
-            </ul> */}
     </div>
   );
 }

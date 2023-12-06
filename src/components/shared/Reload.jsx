@@ -1,5 +1,6 @@
 import React from "react";
 import { Spinner } from "react-bootstrap";
+import CountDown from "./countDown";
 
 function Reload() {
   const handleHardRefresh = () => {
@@ -19,12 +20,16 @@ function Reload() {
         Kindly be patient as the data is fetched from the backend.
       </h3>
       <p className="text-center">
-        At times, the server <span className="font-weight-bold text-danger">may take approximately 5-7 seconds to function</span>. To
-        initiate the data loading process, kindly refresh. ...
+        When the backend is idle, the server{" "}
+        <span className="font-weight-bold text-danger">
+          may take approximately 30 seconds to function
+        </span>
+        . To initiate the data loading process, kindly refresh. ...
         <button className="btn btn-warning" onClick={handleHardRefresh}>
           Refresh
         </button>
       </p>
+      <CountDown />
     </div>
   );
 }

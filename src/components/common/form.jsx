@@ -70,13 +70,11 @@ class Form extends Component {
     this.setState({ data: modifiedData });
 
     const res = await http.post(imageApiEndPoint, imageData);
-    // console.log(res);
     const { success, data } = res.data;
 
     if (success) {
       modifiedData.image = data.display_url;
       modifiedData.deleteImage = data.delete_url;
-      // console.log(this.state.data);
     } else {
       console.log("Image Uploading failed");
     }

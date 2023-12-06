@@ -1,7 +1,6 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router";
 import { getCurrentUser } from "../../../services/authService";
-import NotFound from "../../shared/notFound";
 import CustomerLeftNav from "./customerLeftNav";
 import CustomerOrder from "./customerOrder";
 import CustomerProfile from "./customerProfile";
@@ -15,7 +14,6 @@ const CustomerDashboard = () => {
       <div className="col-md-2">
         <CustomerLeftNav></CustomerLeftNav>
       </div>
-
       <div className="col-10">
         <Switch>
           <Route path="/customer/order">
@@ -28,7 +26,6 @@ const CustomerDashboard = () => {
           <Route exact path="/customer">
             <CustomerOrder />
           </Route>
-
           <Route path="/customer/">
             <Redirect to="/not-found" />
           </Route>

@@ -17,7 +17,6 @@ const ManageUser = () => {
     }
     getData();
   }, []);
-//   console.log(users);
 
   const sortedUsers = _.orderBy(users, [sortColumn.path], [sortColumn.order]);
 
