@@ -4,7 +4,6 @@ import { getCurrentUser } from "../../services/authService";
 
 const PrivateCustomer = ({ children, ...rest }) => {
   const user = getCurrentUser();
-//   const isCustomer = user && user.userType === "customer";
   const isCustomer = true;
   
   return (

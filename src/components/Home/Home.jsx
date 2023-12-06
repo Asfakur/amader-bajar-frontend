@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import _ from "lodash";
-import { getProducts, deleteProduct } from "../../services/productService";
+import { getProducts } from "../../services/productService";
 import { getCategories } from "../../services/categoryService";
 import { paginate } from "../../utils/paginate";
 import ListGroup from "../common/listGroup";
@@ -24,15 +24,12 @@ function Home() {
       ? products.filter((p) => p.category._id === selectedCategory._id)
       : products;
 
-  //before pagination we have to sort the products using lodash
-
   const sortedProducts = _.orderBy(
     filteredProducts,
     [sortColumn.path],
     [sortColumn.order]
   );
 
-  // const paginatedProducts = paginate(products, currentPage, pageCapacity);
   const paginatedProducts = paginate(sortedProducts, currentPage, pageCapacity);
 
   useEffect(() => {
@@ -59,20 +56,14 @@ function Home() {
     setCurrentPage(1);
   };
 
-  const handleSort = (sortColumn) => {
-    setSortColumn(sortColumn);
-  };
+  // const handleSort = (sortColumn) => {
+  //   setSortColumn(sortColumn);
+  // };
   const viewProduct = (productId) => {
-    // console.log('Product details', productId);
     history.push(`/products/${productId}`);
   };
 
-  if (products.length === 0)
-    return (
-      <Reload/>
-    );
-  // <p>There is no product in database</p>;
-
+  if (products.length === 0) return <Reload />;
   return (
     <div className="row container-fluid">
       <div className="col-sm-2 mt-2">

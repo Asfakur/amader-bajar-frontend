@@ -12,22 +12,12 @@ function ProductDetails() {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [productDetails, setProductDetails] = useState({});
-  const [customerDetails, setCustomerDetails] = useState({});
 
   let productQuantity = Number(quantity) < 1 ? 1 : Number(quantity);
   let location = useLocation();
   let history = useHistory();
 
   const user = getCurrentUser();
-
-  // if (user && user.userType === "customer") {
-  //   setCustomerDetails({
-  //     _id: user._id,
-  //     name: user.name,
-  //     phone: user.phone,
-  //     email: user.email,
-  //   });
-  // }
 
   useEffect(() => {
     async function getData() {
@@ -45,21 +35,17 @@ function ProductDetails() {
       quantity: productQuantity,
     });
   }, [product, productQuantity]);
-  // console.log(user);
 
   const handleQuantity = (isIncrease) => {
     if (isIncrease) {
       if (Number(quantity) > 24) return;
       setQuantity(Number(quantity) + 1);
-      // console.log(quantity);
     } else {
       if (Number(quantity) > 1) {
         setQuantity(Number(quantity) - 1);
       } else {
         setQuantity(1);
       }
-
-      // console.log(quantity);
     }
   };
   const handleGetQuantity = (e) => {
@@ -82,7 +68,6 @@ function ProductDetails() {
           token,
           productDetails,
           customerDetails: user,
-          // customerDetails,
         });
 
         const { orderSavedToDb, paymentDone } = response.data;
@@ -98,7 +83,6 @@ function ProductDetails() {
       alert("something is wrong");
     }
   };
-  // console.log(product);
 
   return (
     <div className="container-fluid">
@@ -131,7 +115,6 @@ function ProductDetails() {
                   min="1"
                   max="20"
                   name="quantity"
-                  // defaultValue={orderDetails.quantity}
                   value={quantity}
                   onChange={handleGetQuantity}
                   className="form-control mt-1"
@@ -146,7 +129,6 @@ function ProductDetails() {
 
               {user ? (
                 <StripeCheckout
-                  // disabled={user ? "disabled" : null}
                   disabled={user && user.userType === "admin" ? true : false}
                   stripeKey={stripeKey}
                   token={handlePay}
@@ -157,7 +139,6 @@ function ProductDetails() {
                   name={productDetails.name}
                   image="https://i.ibb.co/8ztWc1p/logo-amader-bajar.png"
                   billingAddress
-                  // shippingAddress
                 ></StripeCheckout>
               ) : (
                 <Link
@@ -173,7 +154,8 @@ function ProductDetails() {
             </div>
             <h2>
               <span className="badge bg-info my-2 taka">
-                Total price: {productDetails.price * productDetails.quantity} &#2547;
+                Total price: {productDetails.price * productDetails.quantity}{" "}
+                &#2547;
               </span>
             </h2>
           </div>

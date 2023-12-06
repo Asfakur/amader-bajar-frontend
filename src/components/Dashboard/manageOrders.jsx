@@ -23,11 +23,7 @@ const ManageOrders = () => {
   const handleSelect = async (e, order) => {
     const currentStatus = e.target.value;
     const orderId = order._id;
-    const result = await changeOrderStatus(orderId, currentStatus);
-    // console.log(result.data);
-
-    // console.log("status current ", currentStatus, "orderID ", orderId);
-    // console.log("Option Selected", order);
+    await changeOrderStatus(orderId, currentStatus);
   };
 
   const handleSort = (sortColumn) => {

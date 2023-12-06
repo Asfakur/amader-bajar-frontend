@@ -6,8 +6,6 @@ function Pagination({ itemsCount, pageCapacity, currentPage, onPageChange }) {
   const pagesCount = Math.ceil(itemsCount / pageCapacity);
   if (pagesCount === 1) return null;
 
-  //creating arrays with lodash
-  //[1, 2, 3].map()
   const pages = _.range(1, pagesCount + 1); //here 1 is for(0+1)
 
   return (
