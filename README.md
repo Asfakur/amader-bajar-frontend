@@ -3,18 +3,18 @@
 App: [Live Site](https://amader-bazar.netlify.app/).
 [Back-End code] (https://github.com/Asfakur/amader-bajar-backend)
 
-Special Things:
+#### Special Things:
     - Clean and dry code
     - Reusable components
     - Proper authentication and authorization
 
-Main Features:
+#### Main Features:
     - Stripe Payment gateway integration
     - Every Property wise sorting
     - Pagination
     - Quantity Selection
 
-Tools:
+#### Tools:
     - React
     - React Bootstrap
     - Docker
