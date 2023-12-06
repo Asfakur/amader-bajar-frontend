@@ -19,3 +19,13 @@ App: [Live Site](https://amader-bazar.netlify.app/).
     - React Bootstrap
     - Docker
     - Backend deployed on render
+
+# User Manual for sample user
+
+## for admin user
+    - userName: admin@gmail.com
+    - password: admin
+
+## for customer:
+    -userName: customer@gmail.com
+    -password: customer
